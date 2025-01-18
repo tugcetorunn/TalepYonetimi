@@ -34,7 +34,7 @@ namespace TalepYonetimi.Persistence.ConcreteRepositories
             IQueryable<T> query = Table.AsQueryable();
             if (!tracking)
                 query = query.AsNoTracking();
-            return await query.FirstOrDefaultAsync(entity => EF.Property<int>(entity, "Id") == id); // Id property sini bularak kontrol sağlıyoruz.
+            return await query.FirstOrDefaultAsync(entity => EF.Property<int>(entity, "Id") == id); // primary key üzerinden sorgu yaparak bulur.
         }
     }
 }

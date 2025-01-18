@@ -20,11 +20,4 @@
     <ProjectReference Include="..\..\Core\TalepYonetimi.Domain\TalepYonetimi.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="ConcreteRepositories\ApplicationUsers\" />
-    <Folder Include="ConcreteRepositories\Customers\" />
-    <Folder Include="ConcreteRepositories\Demands\" />
-    <Folder Include="ConcreteRepositories\Departments\" />
-  </ItemGroup>
-
 </Project>
