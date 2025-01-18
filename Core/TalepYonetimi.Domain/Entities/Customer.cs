@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TalepYonetimi.Domain.Entities
 {
-    public class Customer : BasePerson
+    public class Customer
     {
         public int CustomerId { get; set; }
         public string Name { get; set; }
