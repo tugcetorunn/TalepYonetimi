@@ -1,15 +1,26 @@
+using Microsoft.EntityFrameworkCore;
+using TalepYonetimi.Domain.Entities.Admin;
+using TalepYonetimi.Persistence.Contexts;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
 builder.Services.AddControllersWithViews();
+
+// identity 3. adým
+// identity service entegrasyonu 
+builder.Services.AddIdentity<ApplicationUser, ApplicationRole>().AddEntityFrameworkStores<TalepYonetimiDbContext>();
+
+// db connection
+builder.Services.AddDbContext<TalepYonetimiDbContext>(options => options
+                                                           .UseSqlServer(builder.Configuration
+                                                           .GetConnectionString("TalepYonetimiConnection"), // connectionString appSettings.json da configure edildi.
+                                                           b => b.MigrationsAssembly("TalepYonetimi.Presentation")));
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 
