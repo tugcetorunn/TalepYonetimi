@@ -18,7 +18,6 @@ namespace TalepYonetimi.Persistence.ConcreteRepositories
             context = _context;
         }
         
-        // context.Set<TEntity>() mouse la üstüne geldiğmizde DbSet<TEntity> ye karşılık geldiğini görüyoruz.
         public DbSet<T> Table => context.Set<T>(); // context.Set<TEntity>() --> DbSet<Customer>, DbSet<Demand>... dbsetten dönüştürerek genelden özele entity lere ulaşmış oluyoruz.
 
         public IQueryable<T> GetAll(bool tracking = true)

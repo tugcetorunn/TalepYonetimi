@@ -12,7 +12,7 @@ using TalepYonetimi.Persistence.Contexts;
 namespace TalepYonetimi.Presentation.Migrations
 {
     [DbContext(typeof(TalepYonetimiDbContext))]
-    [Migration("20250118191244_mig-1")]
+    [Migration("20250118231120_mig-1")]
     partial class mig1
     {
         /// <inheritdoc />
@@ -170,7 +170,7 @@ namespace TalepYonetimi.Presentation.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("DepartmentId")
+                    b.Property<int?>("DepartmentId")
                         .HasColumnType("int");
 
                     b.Property<string>("Email")
@@ -238,11 +238,11 @@ namespace TalepYonetimi.Presentation.Migrations
 
             modelBuilder.Entity("TalepYonetimi.Domain.Entities.Customer", b =>
                 {
-                    b.Property<int>("CustomerId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CustomerId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -260,39 +260,38 @@ namespace TalepYonetimi.Presentation.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("CustomerId");
+                    b.HasKey("Id");
 
                     b.ToTable("Customers");
                 });
 
             modelBuilder.Entity("TalepYonetimi.Domain.Entities.Demand", b =>
                 {
-                    b.Property<int>("DemandId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("DemandId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("ArrivalDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("CompletionDate")
+                    b.Property<DateTime?>("CompletionDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("CustomerId")
+                    b.Property<int?>("CustomerId")
                         .HasColumnType("int");
 
                     b.Property<int>("DemandType")
                         .HasColumnType("int");
 
-                    b.Property<int>("DepartmentId")
+                    b.Property<int?>("DepartmentId")
                         .HasColumnType("int");
 
                     b.Property<string>("Message")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("DemandId");
+                    b.HasKey("Id");
 
                     b.HasIndex("CustomerId");
 
@@ -303,17 +302,17 @@ namespace TalepYonetimi.Presentation.Migrations
 
             modelBuilder.Entity("TalepYonetimi.Domain.Entities.Department", b =>
                 {
-                    b.Property<int>("DepartmentId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("DepartmentId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("DepartmentId");
+                    b.HasKey("Id");
 
                     b.ToTable("Departments");
                 });
@@ -373,9 +372,7 @@ namespace TalepYonetimi.Presentation.Migrations
                 {
                     b.HasOne("TalepYonetimi.Domain.Entities.Department", "Department")
                         .WithMany("ApplicationUsers")
-                        .HasForeignKey("DepartmentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("DepartmentId");
 
                     b.Navigation("Department");
                 });
@@ -384,15 +381,11 @@ namespace TalepYonetimi.Presentation.Migrations
                 {
                     b.HasOne("TalepYonetimi.Domain.Entities.Customer", "Customer")
                         .WithMany("Demands")
-                        .HasForeignKey("CustomerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CustomerId");
 
                     b.HasOne("TalepYonetimi.Domain.Entities.Department", "Department")
                         .WithMany("Demands")
-                        .HasForeignKey("DepartmentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("DepartmentId");
 
                     b.Navigation("Customer");
 

@@ -1,13 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using TalepYonetimi.Application.AbstractRepositories.ApplicationUsers;
-using TalepYonetimi.Application.AbstractRepositories.Customers;
-using TalepYonetimi.Application.AbstractRepositories.Demands;
-using TalepYonetimi.Application.AbstractRepositories.Departments;
 using TalepYonetimi.Domain.Entities.Admin;
-using TalepYonetimi.Persistence.ConcreteRepositories.ApplicationUsers;
-using TalepYonetimi.Persistence.ConcreteRepositories.Customers;
-using TalepYonetimi.Persistence.ConcreteRepositories.Demands;
-using TalepYonetimi.Persistence.ConcreteRepositories.Departments;
 using TalepYonetimi.Persistence.Contexts;
 using TalepYonetimi.Presentation.Extensions;
 
@@ -48,6 +40,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Demands}/{action=Index}/{id?}");
+    pattern: "{controller=Department}/{action=Index}/{id?}");
 
 app.Run();

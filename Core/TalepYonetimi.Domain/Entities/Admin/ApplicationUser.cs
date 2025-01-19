@@ -14,6 +14,6 @@ namespace TalepYonetimi.Domain.Entities.Admin
         // Identity kütüphanesinin barındırdığı property lere ek, tanımlamamız gereken property ler için oluşturdum.
         public string Name { get; set; }
         public string LastName { get; set; }
-        public Department Department { get; set; } // userlar bizim çalışanlarımız oluyor, her çalışanın bir departmanı vardır.
+        public Department? Department { get; set; } // userlar bizim çalışanlarımız oluyor, her çalışanın bir departmanı vardır.
     }
 }
