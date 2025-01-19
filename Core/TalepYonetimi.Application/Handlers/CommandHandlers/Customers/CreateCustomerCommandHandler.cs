@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using AutoMapper;
+using MediatR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,27 +9,30 @@ using TalepYonetimi.Application.AbstractRepositories.ApplicationUsers;
 using TalepYonetimi.Application.AbstractRepositories.Customers;
 using TalepYonetimi.Application.Commands.ApplicationUsers;
 using TalepYonetimi.Application.Commands.Customers;
+using TalepYonetimi.Application.Dtos;
+using TalepYonetimi.Domain.Entities;
 
 namespace TalepYonetimi.Application.Handlers.CommandHandlers.Customers
 {
-    public class CreateCustomerCommandHandler : IRequestHandler<CreateCustomerCommand, bool>
+    public class CreateCustomerCommandHandler : IRequestHandler<CreateCustomerCommand, CustomerDto>
     {
         private readonly ICustomerWriteRepository customerWriteRepository;
-        public CreateCustomerCommandHandler(ICustomerWriteRepository _customerWriteRepository)
+        private readonly IMapper mapper;
+        public CreateCustomerCommandHandler(ICustomerWriteRepository _customerWriteRepository, IMapper _mapper)
         {
             customerWriteRepository = _customerWriteRepository;
+            mapper = _mapper;
         }
-        public async Task<bool> Handle(CreateCustomerCommand request, CancellationToken cancellationToken)
+        public async Task<CustomerDto> Handle(CreateCustomerCommand request, CancellationToken cancellationToken)
         {
-            await customerWriteRepository.AddAsync(new()
-            {
-                Name = request.Name,
-                Lastname = request.Lastname,
-                PhoneNumber = request.PhoneNumber,
-                Email = request.Email
-            });
+            var customerDto = mapper.Map<CustomerDto>(request);
+            var customer = mapper.Map<Customer>(customerDto);
 
-            return await customerWriteRepository.SaveChangesAsync();
+            await customerWriteRepository.AddAsync(customer);
+
+            await customerWriteRepository.SaveChangesAsync();
+
+            return mapper.Map<CustomerDto>(customer); // oluşturulan nesnenin id bilgisini almak için. (demandcontroller)
         }
     }
 }

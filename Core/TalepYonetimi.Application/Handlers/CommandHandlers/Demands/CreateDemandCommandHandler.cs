@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TalepYonetimi.Application.AbstractRepositories.Customers;
 using TalepYonetimi.Application.AbstractRepositories.Demands;
 using TalepYonetimi.Application.Commands.Demands;
 using TalepYonetimi.Domain.Entities;
@@ -14,15 +15,15 @@ namespace TalepYonetimi.Application.Handlers.CommandHandlers.Demands
     public class CreateDemandCommandHandler : IRequestHandler<CreateDemandCommand, bool>
     {
         private readonly IDemandWriteRepository demandWriteRepository;
-        private readonly IMapper mapper;
-        public CreateDemandCommandHandler(IDemandWriteRepository _demandWriteRepository, IMapper _mapper)
+        private readonly ICustomerReadRepository customerReadRepository;
+        public CreateDemandCommandHandler(IDemandWriteRepository _demandWriteRepository, ICustomerReadRepository _customerReadRepository)
         {
             demandWriteRepository = _demandWriteRepository;
-            mapper = _mapper;
+            customerReadRepository = _customerReadRepository;
         }
         public async Task<bool> Handle(CreateDemandCommand request, CancellationToken cancellationToken)
         {
-            var customer = mapper.Map<Customer>(request.Customer);
+            var customer = await customerReadRepository.GetByIdAsync(request.CustomerId);
 
             await demandWriteRepository.AddAsync(new()
             {

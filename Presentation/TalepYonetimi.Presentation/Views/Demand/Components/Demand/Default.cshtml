@@ -1,0 +1,54 @@
+﻿@{
+    var demandTypes = ViewBag.DemandTypes as Array;
+    var products = ViewBag.Products as Array;
+}
+<div class="formbold-input-group">
+    <label class="formbold-form-label">
+        Hangi ürünümüz için talepte bulunuyorsunuz? Seçiniz.
+    </label>
+
+    <select class="formbold-form-select" name="product" id="product">
+        @* request, talep tablosuna ürün property si olarak kaydedilecek. *@
+        @{
+            foreach(var product in products)
+            {
+                <option value="@((int)product)">@product</option>
+            }
+        }
+    </select>
+</div>
+
+<div class="formbold-input-radio-wrapper">
+    <label for="demandType" class="formbold-form-label">
+        Nasıl bir talepte bulunmak istiyorsunuz?
+    </label>
+    @{
+        foreach (var demandType in demandTypes)
+        {
+            <div class="formbold-radio-flex">
+                <div class="formbold-radio-group">
+                    <label class="formbold-radio-label">
+                        <input class="formbold-input-radio"
+                               type="radio"
+                               name="demandType"
+                               id="demandType"
+                               value="@((int)demandType)" />
+                        @demandType Talebi
+                        <span class="formbold-radio-checkmark"></span>
+                    </label>
+                </div>
+            </div>
+        }
+    }
+</div>
+
+<div>
+    <label for="message" class="formbold-form-label">
+        Talebiniz ile ilgili detayları yazınız
+    </label>
+    <textarea rows="6"
+              name="message"
+              id="message"
+              placeholder="Buraya yazınız..."
+              class="formbold-form-input"></textarea>
+</div>

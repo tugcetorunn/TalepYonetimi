@@ -9,11 +9,11 @@ namespace TalepYonetimi.Domain.Enums
     public enum DemandType
     {
         Demo, // demo talebi
-        Purchase, // satınalma talebi
-        Training, // eğitim desteği talebi
-        Customization, // özelleştirme talebi
-        ErrorSolution, // hata çözüm talebi
-        PurchaseCancellation // satınalma iptali talebi
+        Satınalma, // satınalma talebi
+        Eğitim, // eğitim desteği talebi
+        Özelleştirme, // özelleştirme talebi
+        Çözüm, // hata çözüm talebi
+        İptal // satınalma iptali talebi
 
     }
 }

@@ -12,6 +12,7 @@ namespace TalepYonetimi.Presentation.Extensions
             services.AddAutoMapper(typeof(DepartmentMappingProfile));
             services.AddAutoMapper(typeof(CustomerMappingProfile));
             services.AddAutoMapper(typeof(ApplicationUserMappingProfile));
+            services.AddAutoMapper(typeof(CreateCustomerCommandMappingProfile));
         }
     }
 }

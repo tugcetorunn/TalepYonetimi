@@ -1,0 +1,10 @@
+﻿<div class="formbold-main-wrapper" style="margin-top: 0px !important; padding-top: 0px !important">
+    <div class="formbold-form-wrapper" style="margin-top: 0px; padding-top: 0px !important">
+        <img src="~/presentation/img/talep.png" style="width: 490px !important">
+        <form asp-controller="Demand" asp-action="Create" method="POST">
+            @await Component.InvokeAsync("Customer")
+            @await Component.InvokeAsync("Demand")
+            <button type="submit" class="formbold-btn">Submit</button>
+        </form>
+    </div>
+</div>

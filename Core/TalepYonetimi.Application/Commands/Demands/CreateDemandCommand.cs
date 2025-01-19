@@ -15,7 +15,7 @@ namespace TalepYonetimi.Application.Commands.Demands
         public DemandType DemandType { get; set; } 
         public Product Product { get; set; } 
         public string? Message { get; set; } 
-        public CustomerDto? Customer { get; set; } 
-        public DepartmentDto? Department { get; set; }
+        public int CustomerId { get; set; } 
+        public int? DepartmentId { get; set; }
     }
 }
