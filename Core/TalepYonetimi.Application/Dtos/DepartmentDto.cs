@@ -11,8 +11,8 @@ namespace TalepYonetimi.Application.Dtos
     public class DepartmentDto
     {
         public int Id { get; set; }
-        public string Name { get; set; }
-        public ICollection<ApplicationUserDto> ApplicationUsers { get; set; }
-        public ICollection<DemandDto> Demands { get; set; }
+        public string? Name { get; set; }
+        public ICollection<ApplicationUserDto>? ApplicationUsers { get; set; }
+        public ICollection<DemandDto>? Demands { get; set; }
     }
 }

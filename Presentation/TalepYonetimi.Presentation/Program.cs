@@ -1,4 +1,7 @@
+using MediatR;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection;
+using TalepYonetimi.Application.Commands.ApplicationUsers;
 using TalepYonetimi.Domain.Entities.Admin;
 using TalepYonetimi.Persistence.Contexts;
 using TalepYonetimi.Presentation.Extensions;
@@ -22,6 +25,10 @@ builder.Services.AddServicesForRepositories();
 
 // automapper extension metodun çaðrýlmasý
 builder.Services.AddAutoMapperProfiles();
+
+// mediatr extension metodun çaðrýlmasý
+builder.Services.AddMediatrServices();
+
 
 var app = builder.Build();
 

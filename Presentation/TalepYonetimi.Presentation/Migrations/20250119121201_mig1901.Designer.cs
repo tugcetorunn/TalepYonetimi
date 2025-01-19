@@ -12,8 +12,8 @@ using TalepYonetimi.Persistence.Contexts;
 namespace TalepYonetimi.Presentation.Migrations
 {
     [DbContext(typeof(TalepYonetimiDbContext))]
-    [Migration("20250118231120_mig-1")]
-    partial class mig1
+    [Migration("20250119121201_mig1901")]
+    partial class mig1901
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -290,6 +290,9 @@ namespace TalepYonetimi.Presentation.Migrations
 
                     b.Property<string>("Message")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Product")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
