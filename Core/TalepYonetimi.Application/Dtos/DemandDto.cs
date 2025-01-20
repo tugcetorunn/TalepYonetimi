@@ -11,11 +11,11 @@ namespace TalepYonetimi.Application.Dtos
     public class DemandDto
     {
         public int Id { get; set; }
-        public DemandType DemandType { get; set; } // talep türleri enum üzerinden çekilecek.
-        public string Message { get; set; } // açıklama mesajı
-        public DateTime ArrivalDate { get; set; } // talep geliş tarihi
-        public DateTime CompletionDate { get; set; } // talep tamamlanma tarihi
-        public CustomerDto Customer { get; set; } // bir talebin bir müşterisi olur.
-        public DepartmentDto Department { get; set; }
+        public DemandType DemandType { get; set; } 
+        public string Message { get; set; } 
+        public DateTime ArrivalDate { get; set; } 
+        public DateTime CompletionDate { get; set; } 
+        public int CustomerId { get; set; } 
+        public int DepartmentId { get; set; }
     }
 }

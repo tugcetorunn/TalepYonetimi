@@ -10,7 +10,7 @@ using TalepYonetimi.Domain.Entities.Admin;
 
 namespace TalepYonetimi.Persistence.Contexts
 {
-    public class TalepYonetimiDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, string>
+    public class TalepYonetimiDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, int>
     {
         // identity 2. adım
         // dbcontext e identity yi kullanacağımızı bildiriyoruz, identityDbContext ten miras alıp user ve role entitylerini veriyoruz.
@@ -20,7 +20,6 @@ namespace TalepYonetimi.Persistence.Contexts
         }
         public DbSet<Demand> Demands { get; set; }
         public DbSet<Customer> Customers { get; set; }
-        //public DbSet<Employee> Employees { get; set; }
         public DbSet<Department> Departments { get; set; }
 
 

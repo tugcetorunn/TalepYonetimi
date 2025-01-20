@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace TalepYonetimi.Domain.Entities.Admin
 {
-    public class ApplicationUser : IdentityUser
+    public class ApplicationUser : IdentityUser<int>
     {
         // identity 1. adım
         // user ve role işlemleri için identity ve identity.efCore kütüphanelerini yükledikten sonra appUser ve appRole classlarını oluşturup kalıtımlarını alıyoruz.

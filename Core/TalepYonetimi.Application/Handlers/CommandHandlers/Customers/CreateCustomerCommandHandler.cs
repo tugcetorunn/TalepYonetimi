@@ -1,13 +1,6 @@
 ﻿using AutoMapper;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TalepYonetimi.Application.AbstractRepositories.ApplicationUsers;
 using TalepYonetimi.Application.AbstractRepositories.Customers;
-using TalepYonetimi.Application.Commands.ApplicationUsers;
 using TalepYonetimi.Application.Commands.Customers;
 using TalepYonetimi.Application.Dtos;
 using TalepYonetimi.Domain.Entities;
@@ -16,6 +9,9 @@ namespace TalepYonetimi.Application.Handlers.CommandHandlers.Customers
 {
     public class CreateCustomerCommandHandler : IRequestHandler<CreateCustomerCommand, CustomerDto>
     {
+        // mediatr-cqrs 2. adım
+        // iş yapacak handler sınıflarını tanımlıyoruz. handler lar ırequesthandler interface inden miras alırken <request type, response type>
+        // vermeli ve bu interface in handle metodunu implemente etmelidir.
         private readonly ICustomerWriteRepository customerWriteRepository;
         private readonly IMapper mapper;
         public CreateCustomerCommandHandler(ICustomerWriteRepository _customerWriteRepository, IMapper _mapper)

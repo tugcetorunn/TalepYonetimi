@@ -8,7 +8,7 @@ using TalepYonetimi.Application.Dtos;
 
 namespace TalepYonetimi.Application.Queries.Departments
 {
-    public class GetAllDepartmentsQuery : IRequest<IQueryable<DepartmentDto>>
+    public class GetAllDepartmentQuery : IRequest<IQueryable<DepartmentDto>>
     {
     }
 }

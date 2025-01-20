@@ -20,8 +20,4 @@
     <ProjectReference Include="..\..\Infrastructure\TalepYonetimi.Persistence\TalepYonetimi.Persistence.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="wwwroot\management\" />
-  </ItemGroup>
-
 </Project>

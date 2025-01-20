@@ -11,7 +11,7 @@ namespace TalepYonetimi.Application.Commands.ApplicationUsers
 {
     public class UpdateApplicationUserCommand : IRequest<bool>
     {
-        public string Id { get; set; } // hangi user ın update edileceği id bilgisi ile geleceği için id yi parametre olarak veriyoruz.
+        public int Id { get; set; } // hangi user ın update edileceği id bilgisi ile geleceği için id yi parametre olarak veriyoruz.
         public string Name { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }

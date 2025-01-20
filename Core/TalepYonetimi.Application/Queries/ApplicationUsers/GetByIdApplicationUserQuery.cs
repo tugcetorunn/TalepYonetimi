@@ -10,6 +10,6 @@ namespace TalepYonetimi.Application.Queries.ApplicationUsers
 {
     public class GetByIdApplicationUserQuery : IRequest<ApplicationUserDto>
     {
-        public string Id { get; set; }
+        public int Id { get; set; }
     }
 }

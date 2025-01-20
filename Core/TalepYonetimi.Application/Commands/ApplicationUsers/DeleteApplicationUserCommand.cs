@@ -9,6 +9,6 @@ namespace TalepYonetimi.Application.Commands.ApplicationUsers
 {
     public class DeleteApplicationUserCommand : IRequest<bool>
     {
-        public string Id { get; set; }
+        public int Id { get; set; }
     }
 }

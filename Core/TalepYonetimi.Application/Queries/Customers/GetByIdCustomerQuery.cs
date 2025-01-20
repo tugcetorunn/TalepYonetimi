@@ -8,7 +8,7 @@ using TalepYonetimi.Application.Dtos;
 
 namespace TalepYonetimi.Application.Queries.Customers
 {
-    public class GetByIdDemandQuery : IRequest<CustomerDto>
+    public class GetByIdCustomerQuery : IRequest<CustomerDto>
     {
         public int Id { get; set; }
     }

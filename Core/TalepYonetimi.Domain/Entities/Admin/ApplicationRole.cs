@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace TalepYonetimi.Domain.Entities.Admin
 {
-    public class ApplicationRole : IdentityRole
+    public class ApplicationRole : IdentityRole<int>
     {
     }
 }

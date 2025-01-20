@@ -1,47 +1,51 @@
 ﻿using AutoMapper;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TalepYonetimi.Application.AbstractRepositories.ApplicationUsers;
+using Microsoft.AspNetCore.Identity;
 using TalepYonetimi.Application.Commands.ApplicationUsers;
-using TalepYonetimi.Application.Dtos;
 using TalepYonetimi.Domain.Entities;
 using TalepYonetimi.Domain.Entities.Admin;
 
 namespace TalepYonetimi.Application.Handlers.CommandHandlers.ApplicationUsers
 {
-    public class CreateApplicationUserCommandHandler : IRequestHandler<CreateApplicationUserCommand, bool>
+    public class CreateApplicationUserCommandHandler : IRequestHandler<CreateApplicationUserCommand, CreateApplicationUserCommandResponse>
     {
-        // mediatr-cqrs 2. adım
-        // iş yapacak handler sınıflarını tanımlıyoruz. handler lar ırequesthandler interface inden miras alırken <request type, response type>
-        // vermeli ve bu interface in handle metodunu implemente etmelidir.
-        private readonly IApplicationUserWriteRepository applicationUserWriteRepository;
+        private readonly UserManager<ApplicationUser> userManager; // identity kütüphanesinden hazır gelen kullanıcı ile ilgili fonksiyonlar için
+                                                                   // ioc ile inject ediyoruz.
         private readonly IMapper mapper;
-        public CreateApplicationUserCommandHandler(IApplicationUserWriteRepository _applicationUserWriteRepository, IMapper _mapper)
+        public CreateApplicationUserCommandHandler(UserManager<ApplicationUser> _userManager, IMapper _mapper)
         {
-            applicationUserWriteRepository = _applicationUserWriteRepository;
+            userManager = _userManager;
             mapper = _mapper;
         }
-        public async Task<bool> Handle(CreateApplicationUserCommand request, CancellationToken cancellationToken)
+        public async Task<CreateApplicationUserCommandResponse> Handle(CreateApplicationUserCommand request, CancellationToken cancellationToken)
         {
-            DepartmentDto? departmentDto = request.Department ?? null;
-            var department = mapper.Map<Department>(departmentDto);
+            var department = mapper.Map<Department>(request.Department);
 
-            await applicationUserWriteRepository.AddAsync(new()
+            IdentityResult result = await userManager.CreateAsync(new()
             {
                 Name = request.Name,
                 LastName = request.LastName,
-                Email = request.Email,
                 UserName = request.UserName,
+                Email = request.Email,
                 PhoneNumber = request.PhoneNumber,
                 Department = department
-            });
+            }, request.Password);
 
-            return await applicationUserWriteRepository.SaveChangesAsync();
+            CreateApplicationUserCommandResponse response = new() { Succeeded = result.Succeeded };
 
+            if (result.Succeeded)
+            {
+                response.Message = "Kullanıcı başarıyla oluşturuldu.";
+            }
+            else
+            {
+                foreach (var error in result.Errors)
+                {
+                    response.Message += $"{error.Code} - {error.Description}\n";
+                }
+            }
+
+            return response;
         }
     }
 }
