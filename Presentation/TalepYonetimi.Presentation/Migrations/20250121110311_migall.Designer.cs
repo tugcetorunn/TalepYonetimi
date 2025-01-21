@@ -12,8 +12,8 @@ using TalepYonetimi.Persistence.Contexts;
 namespace TalepYonetimi.Presentation.Migrations
 {
     [DbContext(typeof(TalepYonetimiDbContext))]
-    [Migration("20250120003102_mig2001")]
-    partial class mig2001
+    [Migration("20250121110311_migall")]
+    partial class migall
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -320,6 +320,28 @@ namespace TalepYonetimi.Presentation.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Departments");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Satış"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Satınalma"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Yazılım Geliştirme"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "Eğitim"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>

@@ -1,12 +1,8 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TalepYonetimi.Domain.Entities;
 using TalepYonetimi.Domain.Entities.Admin;
+using TalepYonetimi.Persistence.Extensions;
 
 namespace TalepYonetimi.Persistence.Contexts
 {
@@ -22,6 +18,10 @@ namespace TalepYonetimi.Persistence.Contexts
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Department> Departments { get; set; }
 
-
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+            builder.CreateData();
+        }
     }
 }

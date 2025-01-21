@@ -4,12 +4,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TalepYonetimi.Application.Dtos;
 
-namespace TalepYonetimi.Application.Commands.Demands
+namespace TalepYonetimi.Application.Queries.Demands
 {
-    public class DeleteDemandCommand : IRequest<bool>
+    public class GetAllDemandWithAuthorizeQuery : IRequest<IQueryable<DemandDto>>
     {
-        public int DemandId { get; set; }
         public int UserId { get; set; }
     }
 }

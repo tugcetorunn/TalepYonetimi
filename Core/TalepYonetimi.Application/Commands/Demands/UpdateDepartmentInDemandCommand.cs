@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace TalepYonetimi.Application.Commands.Demands
 {
-    public class DeleteDemandCommand : IRequest<bool>
+    public class UpdateDepartmentInDemandCommand : IRequest<bool>
     {
-        public int DemandId { get; set; }
-        public int UserId { get; set; }
+        public int Id { get; set; } // seçili talep için id
+        public int DepartmentId { get; set; } // talebe eklenecek departman
     }
 }

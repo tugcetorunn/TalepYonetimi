@@ -1,0 +1,84 @@
+﻿@model IQueryable<TalepYonetimi.Application.Dtos.DemandDto>
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>DataTables</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">DataTables</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">DataTable with default features</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <table id="example1" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Firma/Kişi</th>
+                                    <th>Ürün</th>
+                                    <th>Talep Türü</th>
+                                    <th>Mesaj</th>
+                                    <th>Geliş Tarihi</th>
+                                    <th>Departman</th>
+                                    <th>İşlem</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{
+                                    foreach (var demand in Model)
+                                    {
+                                        <tr>
+                                            <td>@demand.Id</td>
+                                            <td>@demand.CustomerName</td>
+                                            <td>@demand.Product</td>
+                                            <td>@demand.DemandType</td>
+                                            <td>@demand.Message</td>
+                                            <td>@demand.ArrivalDate</td>
+                                            <td>
+                                            </td>
+                                            <td>
+                                                <form asp-controller="Admin" asp-action="UpdateDemandByDepartment" method="post">
+                                                    <input type="hidden" name="userId" value="@demand.Id" />
+                                                    <button type="submit" class="btn btn-block btn-primary">Düzenle</button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</section>
+<!-- /.content -->

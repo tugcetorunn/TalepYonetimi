@@ -12,7 +12,8 @@ namespace TalepYonetimi.Application.Commands.Demands
 {
     public class UpdateDemandCommand : IRequest<bool>
     {
-        public int Id { get; set; }
+        public int DemandId { get; set; }
+        public int UserId { get; set; }
         public DemandType DemandType { get; set; } 
         public Product Product { get; set; } 
         public string? Message { get; set; } 

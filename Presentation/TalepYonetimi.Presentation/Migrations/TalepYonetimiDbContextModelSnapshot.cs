@@ -317,6 +317,28 @@ namespace TalepYonetimi.Presentation.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Departments");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Satış"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Satınalma"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Yazılım Geliştirme"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "Eğitim"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>

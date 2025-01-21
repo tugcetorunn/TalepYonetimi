@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using TalepYonetimi.Application.AbstractRepositories.Demands;
 using TalepYonetimi.Application.Commands.Customers;
 using TalepYonetimi.Application.Commands.Demands;
 using TalepYonetimi.Application.Dtos;
@@ -83,6 +82,7 @@ namespace TalepYonetimi.Presentation.Controllers
             return View();
         }
 
+        [HttpGet]
         public IActionResult Success()
         {
             return View();

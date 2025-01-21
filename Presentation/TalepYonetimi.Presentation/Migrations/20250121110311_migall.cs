@@ -3,10 +3,12 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace TalepYonetimi.Presentation.Migrations
 {
     /// <inheritdoc />
-    public partial class mig2001 : Migration
+    public partial class migall : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -222,6 +224,17 @@ namespace TalepYonetimi.Presentation.Migrations
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.InsertData(
+                table: "Departments",
+                columns: new[] { "Id", "Name" },
+                values: new object[,]
+                {
+                    { 1, "Satış" },
+                    { 2, "Satınalma" },
+                    { 3, "Yazılım Geliştirme" },
+                    { 4, "Eğitim" }
                 });
 
             migrationBuilder.CreateIndex(

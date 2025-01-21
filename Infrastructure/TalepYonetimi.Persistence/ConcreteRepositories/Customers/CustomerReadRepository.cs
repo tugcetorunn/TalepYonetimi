@@ -22,9 +22,10 @@ namespace TalepYonetimi.Persistence.ConcreteRepositories.Customers
             mapper = _mapper;
         }
 
+        public DbSet<Customer> Table => context.Set<Customer>();
         public async Task<CustomerDto> GetCustomerByPhoneNumberAsync(string phoneNumber, bool tracking = false)
         {
-            IQueryable<Customer> query = context.Set<Customer>();
+            IQueryable<Customer> query = Table;
             if (!tracking)
             {
                 query = query.AsNoTracking(); // demand e customer entegre edilirken yeniden customer oluştuğu için burada da özellikle tracking i kapatıyoruz.

@@ -11,11 +11,14 @@ namespace TalepYonetimi.Application.Dtos
     public class DemandDto
     {
         public int Id { get; set; }
+        public Product Product { get; set; }
         public DemandType DemandType { get; set; } 
         public string Message { get; set; } 
         public DateTime ArrivalDate { get; set; } 
         public DateTime CompletionDate { get; set; } 
-        public int CustomerId { get; set; } 
+        public int CustomerId { get; set; }
+        public string CustomerName { get; set; }
         public int DepartmentId { get; set; }
+        public string DepartmentName { get; set;}
     }
 }

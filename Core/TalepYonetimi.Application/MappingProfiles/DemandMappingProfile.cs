@@ -14,6 +14,8 @@ namespace TalepYonetimi.Application.MappingProfiles
         public DemandMappingProfile()
         {
             CreateMap<Demand, DemandDto>().ReverseMap();
+                //.ForMember(dest => dest.Customer, opt => opt.MapFrom(src => src.CustomerId))
+                //.ForMember(dest => dest.Department, opt => opt.MapFrom(src => src.DepartmentId));
         }
     }
 }

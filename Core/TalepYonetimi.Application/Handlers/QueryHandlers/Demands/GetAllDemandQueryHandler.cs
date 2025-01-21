@@ -3,6 +3,7 @@ using MediatR;
 using TalepYonetimi.Application.AbstractRepositories.Demands;
 using TalepYonetimi.Application.Dtos;
 using TalepYonetimi.Application.Queries.Demands;
+using TalepYonetimi.Application.ViewModels;
 
 namespace TalepYonetimi.Application.Handlers.QueryHandlers.Demands
 {
@@ -17,15 +18,7 @@ namespace TalepYonetimi.Application.Handlers.QueryHandlers.Demands
         }
         public Task<IQueryable<DemandDto>> Handle(GetAllDemandQuery request, CancellationToken cancellationToken)
         {
-            var demands = demandReadRepository.GetAll(false).Select(d => new DemandDto
-            {
-                DemandType = d.DemandType,
-                ArrivalDate = d.ArrivalDate,
-                CompletionDate = (DateTime)d.CompletionDate,
-                Message = d.Message,
-                CustomerId = d.Customer.Id,
-                DepartmentId = d.Department.Id
-            });
+            var demands = demandReadRepository.GetAllWithIncludes(false);
 
             return Task.FromResult(demands);
         }
